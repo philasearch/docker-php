@@ -9,7 +9,10 @@ RUN apt-get update && apt-get install -y \
         libtidy-dev \
         git \
         vim \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt \
+        libzip-dev \
+    && pecl install mcrypt-1.0.2 \
+    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql tidy mbstring bcmath json mysqli zip \
     && pear install Mail_Mime Mail Net_SMTP \
