@@ -11,6 +11,6 @@ RUN apt-get update && apt-get install -y \
         vim \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql tidy mbstring bcmath json mysqli zip \
+    && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql tidy mbstring bcmath json mysqli zip sodium \
     && pear install Mail_Mime Mail Net_SMTP \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
