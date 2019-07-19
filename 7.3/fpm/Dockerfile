@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         git \
         libzip-dev \
-    && pecl install mcrypt-1.0.2 \
+        libsodium-dev \
+    && pecl install mcrypt-1.0.2 sodium \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install -j$(nproc) \
         iconv \
@@ -26,7 +27,6 @@ RUN apt-get update && apt-get install -y \
         bcmath \
         json \
         mysqli \
-        sodium \
         zip \
         intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y \
         libtidy-dev \
         libpq-dev \
         libmcrypt-dev \
+        libsodium-dev \
         git \
+    && pecl install libsodium \
     && docker-php-ext-install -j$(nproc) \
         iconv \
         mcrypt \
@@ -24,7 +26,6 @@ RUN apt-get update && apt-get install -y \
         bcmath \
         json \
         mysqli \
-        sodium \
         zip \
         intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
