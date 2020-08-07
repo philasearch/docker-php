@@ -11,11 +11,12 @@ RUN apt-get update && apt-get install -y \
         vim \
         libzip-dev \
         libsodium-dev \
-        curl \
+        libcurl4-openssl-dev \
     && pecl install mcrypt-1.0.2 sodium \ \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure curl --with-curl \
     && docker-php-ext-install -j$(nproc) gd pdo pdo_mysql tidy mbstring bcmath json mysqli zip curl \
     && pear install Mail_Mime Mail Net_SMTP \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
