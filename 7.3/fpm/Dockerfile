@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
         git \
         libzip-dev \
         libsodium-dev \
-        curl \
+        libcurl4-openssl-dev \
     && pecl install mcrypt-1.0.2 sodium \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install -j$(nproc) \
